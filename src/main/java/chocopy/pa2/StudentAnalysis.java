@@ -22,8 +22,13 @@ public class StudentAnalysis {
             declarationAnalyzer.getGlobals();
 
         if (!program.hasErrors()) {
-            TypeChecker typeChecker =
-                new TypeChecker(globalSym, program.errors);
+            TypeChecker typeChecker = new TypeChecker(
+                    globalSym,
+                    program.errors,
+                    declarationAnalyzer.getParentMap(),
+                    declarationAnalyzer.getClassScopes(),
+                    declarationAnalyzer.getFuncScopes()
+            );
             program.dispatch(typeChecker);
         }
 
