@@ -400,7 +400,7 @@ public class TypeChecker extends AbstractNodeAnalyzer<Type> {
         Type idType = s.identifier.dispatch(this);
 
         if (iterType != null && !iterType.isListType() && !STR_TYPE.equals(iterType)) {
-            err(s.iterable, "Cannot iterate over value of type `%s`", iterType);
+            err(s, "Cannot iterate over value of type `%s`", iterType);
         } else if (iterType != null && idType != null) {
             Type elementType = iterType.isListType() ? iterType.elementType() : STR_TYPE;
             if (!isTypeCompatible(idType, elementType)) {
